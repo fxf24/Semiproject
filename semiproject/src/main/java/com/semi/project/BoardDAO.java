@@ -1,6 +1,5 @@
 package com.semi.project;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -15,5 +14,9 @@ public class BoardDAO {
 	public List<BoardVO> getAllBoard(){
 		List<BoardVO> list = session.selectList("semiproject.allBoard");
 		return list;
+	}
+	
+	public MemberVO getMember(String member) {
+		return session.selectOne("semiproject.getMember", member);
 	}
 }

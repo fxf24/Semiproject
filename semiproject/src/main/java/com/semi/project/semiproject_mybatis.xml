@@ -38,10 +38,10 @@ sqlSessionFactory 객체 생성자에 전달-->
 class="org.mybatis.spring.SqlSessionTemplate">
 	<constructor-arg ref="sqlSessionFactory" />
 </bean>
-
-<!-- 4.@annotation :MAIN 사용-->
- <context:component-scan 
-base-package="com.semi.project" /> 
+<!-- 
+ 4.@annotation :MAIN 사용-->
+<!--  <context:component-scan 
+base-package="com.semi.project" />  -->
 
 <!-- web.xml에추가 
 	<context-param>

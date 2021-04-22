@@ -3,13 +3,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="semiproject">
 
-<select id="allBoard" resultType="bv">
+<select id="allBoard" resultType="bvo">
 select * from board order by time desc
 </select>
 
-<select id="memberExist" parameterType="string">
-select id from member where id=#{id}
+<select id="getMember" parameterType="String" resultType="mvo">
+select * from member where id=#{value}
 </select>
+
 </mapper>
 
 

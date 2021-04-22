@@ -6,10 +6,10 @@
 <configuration>
 
 	<typeAliases>
-		<typeAlias type="com.semi.project.BoardVO" alias="bv"/>
+		<typeAlias type="com.semi.project.BoardVO" alias="bvo"/>
+		<typeAlias type="com.semi.project.MemberVO" alias="mvo"/>
 	</typeAliases> 
-	
-	
+
 </configuration>
 
 

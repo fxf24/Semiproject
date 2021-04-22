@@ -15,4 +15,10 @@ public class BoardServiceImpl implements BoardService {
 		return dao.getAllBoard();
 	}
 
+	@Override
+	public MemberVO getMember(String member) {
+		// TODO Auto-generated method stub
+		return dao.getMember(member);
+	}
+
 }
