@@ -16,9 +16,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public MemberVO getMember(String member) {
+	public MemberVO getMember(String id) {
 		// TODO Auto-generated method stub
-		return dao.getMember(member);
+		return dao.getMember(id);
 	}
 
 }

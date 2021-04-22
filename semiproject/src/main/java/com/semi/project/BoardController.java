@@ -21,6 +21,7 @@ public class BoardController {
 		mv.setViewName("/board");
 		return mv;
 	}
+	
 	@RequestMapping(value="/board/login", method=RequestMethod.GET)
 	public String loginform() {
 		return "/login";

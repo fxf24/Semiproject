@@ -16,7 +16,7 @@ public class BoardDAO {
 		return list;
 	}
 	
-	public MemberVO getMember(String member) {
-		return session.selectOne("semiproject.getMember", member);
+	public MemberVO getMember(String id) {
+		return session.selectOne("semiproject.getMember", id);
 	}
 }

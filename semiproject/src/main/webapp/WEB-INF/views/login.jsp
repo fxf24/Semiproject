@@ -14,10 +14,11 @@
 <script>
 $(document).ready(function(){
 	 $("#login").on('click', function(e){
-		e.preventDefault()
+		/* e.preventDefault() */
 		alert($("#id").val() + "로그인 됨")
 		var id = $("#id").val()
-		sessionStorage.setItem("id", $("#id").val());
+		alert(${result} )
+		/* sessionStorage.setItem("id", $("#id").val()) */
 		alert("session:" + sessionStorage.getItem("id"))
 	})//on end
 });
@@ -26,7 +27,7 @@ $(document).ready(function(){
 <body>
     <div class="container">
 
-      <form action="/board" class="form-signin">
+      <form action="<%=request.getContextPath() %>/board/login" method="post" class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="text" id="id" class="form-control" placeholder="ID" required autofocus>

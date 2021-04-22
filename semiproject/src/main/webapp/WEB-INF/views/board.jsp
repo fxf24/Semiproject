@@ -30,7 +30,8 @@ $(document).ready(function(){
 		
 	}) 
 	
-	
+	alert(${result})
+	console.log(${result})
 });
 </script>
 </head>

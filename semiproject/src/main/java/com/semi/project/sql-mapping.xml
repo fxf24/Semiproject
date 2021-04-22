@@ -8,7 +8,7 @@ select * from board order by time desc
 </select>
 
 <select id="getMember" parameterType="String" resultType="mvo">
-select * from member where id=#{value}
+select * from member<!--  where id=#{id, jdbcType=VARCHAR} -->
 </select>
 
 </mapper>
