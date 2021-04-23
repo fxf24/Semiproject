@@ -29,6 +29,11 @@ public class MemberVO {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	@Override
+	public String toString() {
+		return "MemberVO [id=" + id + ", password=" + password + ", name=" + name + "]";
+	}
 	
 	
 }

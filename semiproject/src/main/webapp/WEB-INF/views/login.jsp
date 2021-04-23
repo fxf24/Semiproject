@@ -14,12 +14,29 @@
 <script>
 $(document).ready(function(){
 	 $("#login").on('click', function(e){
-		/* e.preventDefault() */
-		alert($("#id").val() + "로그인 됨")
-		var id = $("#id").val()
-		alert(${result} )
 		/* sessionStorage.setItem("id", $("#id").val()) */
-		alert("session:" + sessionStorage.getItem("id"))
+		/* alert("session:" + sessionStorage.getItem("id")) */
+		$.ajax({
+			url: "<%=request.getContextPath()%>/board/login",
+			data: {'id':$("#id").val(), 'pw':$("#pw").val()},
+			type: 'post',
+			dataType: 'json',
+			//여기까지 서버에서 받아옴
+			//밑에서부터 결과를 받아옴
+			success: function(server){
+				alert(server.id)
+				console.log(server.process + ":" + server.id)
+				$("#result").append(server.id)
+				if(server.process =='정상로그인'){
+					sessionStorage.setItem("id", server.id)
+					<%-- window.location = "<%=request.getContextPath()%>/board" --%>
+				}
+				else{
+					alert("아이디나 비밀번호가 잘못됐습니다!")
+				}
+				
+			}
+		});//ajax 요청함수
 	})//on end
 });
 </script>
@@ -27,7 +44,7 @@ $(document).ready(function(){
 <body>
     <div class="container">
 
-      <form action="<%=request.getContextPath() %>/board/login" method="post" class="form-signin">
+      <form class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="text" id="id" class="form-control" placeholder="ID" required autofocus>
@@ -38,7 +55,7 @@ $(document).ready(function(){
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
-        <button id="login" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button id="login" class="btn btn-lg btn-primary btn-block">Sign in</button>
       </form>
 		<div id="result">
 		

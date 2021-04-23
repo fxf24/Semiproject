@@ -7,9 +7,15 @@
 select * from board order by time desc
 </select>
 
-<select id="getMember" parameterType="String" resultType="mvo">
-select * from member<!--  where id=#{id, jdbcType=VARCHAR} -->
+<select id="getMember" parameterType="mvo" resultType="mvo">
+select * from member where id=#{id}
 </select>
+
+<insert id="insertMember" parameterType="mvo">
+insert into member values(
+#{id},#{password},#{name})
+</insert>
+
 
 </mapper>
 
