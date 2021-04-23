@@ -8,7 +8,13 @@ public class BoardVO {
 	String title, contents, writer, time;
 	int viewcount;
 	
-	
+	public BoardVO() {}
+	public BoardVO(String title, String contents, String writer) {
+		super();
+		this.title = title;
+		this.contents = contents;
+		this.writer = writer;
+	}
 	public int getSeq() {
 		return seq;
 	}

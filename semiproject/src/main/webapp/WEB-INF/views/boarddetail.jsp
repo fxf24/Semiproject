@@ -36,7 +36,6 @@ $(document).ready(function(){
 	$("#boardwrite").on("click", function(e){
 		window.location.href = "<%=request.getContextPath()%>/board/boardwrite";
 	}) 
-	
 });
 </script>
 </head>
@@ -77,25 +76,18 @@ $(document).ready(function(){
 		</ul>
 		</div>
 	 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-	 		<h1 class="page-header">게시판</h1>
-			<div class="table-responsive">
-			<table class="table table-striped">
-				<thead>
-					<th>번호</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>조회수</th>
-				</thead>
-				<c:forEach items="${list }" var="vo">
-				<tr><td>${vo.seq }</td><td><a href="<%=request.getContextPath()%>/board/boarddetail/${vo.seq }">${vo.title }</a></td><td>${vo.writer}</td><td>${vo.viewcount}</td></tr>
-				</c:forEach>
-			</table>
+	 		<div class="blog-post">
+	 		<h2 class="blog-post-title">${result.title }</h2>
+			<p class="blog-post-meta"> 작성시간: ${result.time } 작성자: ${result.writer }</p>
+			<p>${result.contents }</p>
 			</div>
 			<button id="boardwrite" class="btn btn-primary">글쓰기</button>
-		</div>
+	 	</div>
+	 		
+			
 	</div>
- </div>
+</div>
 
- <script src="<%=request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
 </body>
 </html>

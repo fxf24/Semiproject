@@ -19,4 +19,20 @@ public class BoardDAO {
 	public MemberVO getMember(String id) {
 		return session.selectOne("semiproject.getMember", id);
 	}
+
+	public BoardVO getOneBoard(int seq) {
+		// TODO Auto-generated method stub
+		session.update("semiproject.updateBoard",seq);
+		return session.selectOne("semiproject.getOneBoard",seq);
+	}
+
+	public void signupMember(MemberVO member) {
+		// TODO Auto-generated method stub
+		session.insert("semiproject.insertMember", member);
+	}
+
+	public void writeBoard(BoardVO bvo) {
+		// TODO Auto-generated method stub
+		session.insert("semiproject.insertBoard", bvo);
+	}
 }

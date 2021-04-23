@@ -21,4 +21,22 @@ public class BoardServiceImpl implements BoardService {
 		return dao.getMember(id);
 	}
 
+	@Override
+	public BoardVO getOneBoard(int seq) {
+		// TODO Auto-generated method stub
+		return dao.getOneBoard(seq);
+	}
+
+	@Override
+	public void signupMember(MemberVO member) {
+		// TODO Auto-generated method stub
+		dao.signupMember(member);
+	}
+
+	@Override
+	public void writeBoard(BoardVO bvo) {
+		// TODO Auto-generated method stub
+		dao.writeBoard(bvo);
+	}
+
 }

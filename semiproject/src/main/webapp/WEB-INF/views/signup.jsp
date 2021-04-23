@@ -13,32 +13,19 @@
 <script src="<%=request.getContextPath() %>/resources/jquery-3.2.1.min.js"></script>
 <script>
 $(document).ready(function(){
-	 $("#login").on('click', function(e){
+	$("#signup").on('click', function(e){
 		/* sessionStorage.setItem("id", $("#id").val()) */
 		/* alert("session:" + sessionStorage.getItem("id")) */
 		$.ajax({
-			url: "<%=request.getContextPath()%>/board/login",
-			data: {'id':$("#id").val(), 'pw':$("#pw").val()},
+			url: "<%=request.getContextPath()%>/board/signup",
+			data: {'id':$("#id").val(), 'pw':$("#pw").val(), 'name':$("#name").val()},
 			type: 'post',
 			dataType: 'json',
 			//여기까지 서버에서 받아옴
 			//밑에서부터 결과를 받아옴
 			success: function(server){
-				console.log(server.process + ":" + server.id)
-				if(server.process =='정상로그인'){
-					if(server.pw == $("#pw").val()){
-						sessionStorage.setItem("id", server.id)
-						alert(server.id + "님 환영합니다!")
-						window.location.href = "<%=request.getContextPath()%>/board";
-					}
-					else{
-						alert("비밀번호가 잘못됐습니다!")
-					}
-				}
-				else{
-					alert("존재하지않는 아이디 입니다!")
-				}
-				
+				alert(server.process)
+				window.location.href = "<%=request.getContextPath()%>/board/login";
 			},
 			error: function (request, status, error){
 				var msg = "ERROR : " + request.status + "<br>"
@@ -49,28 +36,26 @@ $(document).ready(function(){
 
 		});//ajax 요청함수
 	})//login onclick end
-	
-	$("#signup").on("click", function() {
-		window.location.href = "<%=request.getContextPath()%>/board/signup";
-	})//signup onclick end
 });
 </script>
 </head>
 <body>
-    <div class="container">
+ <div class="container">
 
       <form class="form-signin">
-        <h2 class="form-signin-heading">로그인</h2>
-        <label for="inputId" class="sr-only">ID</label>
+        <h2 class="form-signin-heading">회원가입</h2>
+        <label for="inputID" class="sr-only">ID</label>
         <input type="text" id="id" class="form-control" placeholder="ID" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="pw" class="form-control" placeholder="Password" required>
+        <label for="inputName" class="sr-only">Name</label>
+        <input type="text" id="name" class="form-control" placeholder="Name" required>
+        
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
-        <button id="login" type="button" class="btn btn-lg btn-primary btn-block">로그인</button>
         <button id="signup" type="button" class="btn btn-lg btn-primary btn-block">회원가입</button>
       </form>
 		<div id="result">
@@ -78,7 +63,6 @@ $(document).ready(function(){
 		</div>
     </div> <!-- /container -->
     
-
- <script src="<%=request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
+  <script src="<%=request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
 </body>
 </html>

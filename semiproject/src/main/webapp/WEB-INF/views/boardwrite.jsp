@@ -33,15 +33,38 @@ $(document).ready(function(){
 		window.location.href = "<%=request.getContextPath()%>/board";
 	}) 
 	
-	$("#boardwrite").on("click", function(e){
-		window.location.href = "<%=request.getContextPath()%>/board/boardwrite";
-	}) 
-	
+	$("#write").on('click', function(){
+		if(session_id==null){
+			alert("로그인을 해주세요!")
+		}
+		else{
+			$.ajax({
+				url: "<%=request.getContextPath()%>/board/boardwrite",
+				data: {'title':$("#title").val(), 'contents':$("#contents").val(), 
+					'writer':sessionStorage.getItem("id")},
+				type: 'post',
+				dataType: 'json',
+				//여기까지 서버에서 받아옴
+				//밑에서부터 결과를 받아옴
+				success: function(server){
+					alert(server.process)
+					window.location.href = "<%=request.getContextPath()%>/board"
+				},
+				error: function (request, status, error){
+					var msg = "ERROR : " + request.status + "<br>"
+					msg += + "내용 : " + request.responseText + "<br>" + error;
+					console.log(msg);
+					alert(msg)
+				}
+
+			});//ajax 요청함수
+		}
+		
+	})
 });
 </script>
 </head>
 <body>
-
 <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -68,34 +91,24 @@ $(document).ready(function(){
         </div><!--/.navbar-collapse -->
       </div>
  </nav>
- 
- <div class="container-fluid">
+<div class="container">
 	<div class="row">
-		<div class="col-sm-3 col-md-2 sidebar">
-	 	<ul class="nav nav-sidebar ">
-		<li><a href="#">게시판 </a></li>
-		</ul>
-		</div>
-	 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-	 		<h1 class="page-header">게시판</h1>
-			<div class="table-responsive">
-			<table class="table table-striped">
-				<thead>
-					<th>번호</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>조회수</th>
-				</thead>
-				<c:forEach items="${list }" var="vo">
-				<tr><td>${vo.seq }</td><td><a href="<%=request.getContextPath()%>/board/boarddetail/${vo.seq }">${vo.title }</a></td><td>${vo.writer}</td><td>${vo.viewcount}</td></tr>
-				</c:forEach>
-			</table>
-			</div>
-			<button id="boardwrite" class="btn btn-primary">글쓰기</button>
-		</div>
+	<form >
+	<h3 class="col-md-4">제목:</h3> 
+	<input class="col-md-9" type=text id='title'><br>
+	<h3 class="col-md-4">내용:</h3> 
+	<textarea class="col-md-12" rows="3" cols="100" id='contents'></textarea><br>
+	</form>
+	
 	</div>
- </div>
+	<div class="row">
+	<button id="write" type="button" class="btn btn-success">작성</button>
+	</div>
+	
+</div>
 
- <script src="<%=request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
+
+
+<script src="<%=request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
 </body>
 </html>

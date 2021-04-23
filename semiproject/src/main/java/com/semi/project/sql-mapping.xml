@@ -16,7 +16,23 @@ insert into member values(
 #{id},#{password},#{name})
 </insert>
 
+<select id="getOneBoard" parameterType="int" resultType="bvo">
+select * from board where seq=#{seq }
+</select>
 
+<insert id="insertBoard" parameterType="bvo">
+<selectKey resultType="int" keyProperty="seq" order="BEFORE">
+	select board_seq.nextval from dual
+</selectKey>
+
+insert into board values(
+#{seq},#{title},#{contents},#{writer}, sysdate, 0
+)
+</insert>
+
+<update id="updateBoard" parameterType="int">
+update board set viewcount= viewcount+1 where seq=#{seq}
+</update>
 </mapper>
 
 
