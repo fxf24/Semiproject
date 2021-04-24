@@ -30,7 +30,5 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
-	<welcom-file-list>
-		<welcome-file>/WEB-INF/views/*.jsp</welcome-file>
-	</welcom-file-list>
+
 </web-app>
